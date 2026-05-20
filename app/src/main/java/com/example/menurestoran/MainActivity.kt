@@ -290,6 +290,12 @@ fun MainNavigation(isDark: Boolean, onThemeToggle: (Boolean) -> Unit) {
 
 @Composable
 fun SplashScreen(navController: NavHostController) {
+    val context = LocalContext.current
+    val prefManager = remember { PreferenceManager(context) }
+    val data = prefManager.getData()
+    val name = data["name"] as String
+    val profileImageUri = data["profileImageUri"] as String?
+
     LaunchedEffect(Unit) {
         delay(2000)
         navController.navigate("home") {
@@ -299,14 +305,26 @@ fun SplashScreen(navController: NavHostController) {
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                Icons.Default.Restaurant,
-                contentDescription = null,
-                modifier = Modifier.size(100.dp),
-                tint = ToscaGreen
-            )
-            Spacer(Modifier.height(16.dp))
-            Text("Restoran Vibe", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+            if (profileImageUri != null) {
+                AsyncImage(
+                    model = profileImageUri,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(120.dp)
+                        .clip(CircleShape)
+                        .background(LightTosca),
+                    contentScale = ContentScale.Crop
+                )
+            } else {
+                Icon(
+                    Icons.Default.Restaurant,
+                    contentDescription = null,
+                    modifier = Modifier.size(100.dp),
+                    tint = ToscaGreen
+                )
+            }
+            Spacer(Modifier.height(24.dp))
+            Text(name, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, color = ToscaGreen)
         }
     }
 }
@@ -710,11 +728,13 @@ fun DetailMenuScreen(navController: NavHostController, menuId: Int) {
             
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .weight(1f)
+                    .padding(horizontal = 24.dp, vertical = 16.dp)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                Text(item.name, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                Text(item.name, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(item.price, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
                     Spacer(Modifier.width(12.dp))
@@ -731,7 +751,7 @@ fun DetailMenuScreen(navController: NavHostController, menuId: Int) {
                     }
                 }
                 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(12.dp))
                 
                 // Rating
                 Row {
@@ -747,7 +767,7 @@ fun DetailMenuScreen(navController: NavHostController, menuId: Int) {
                     }
                 }
                 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 
                 Text(
                     text = item.description,
@@ -756,12 +776,13 @@ fun DetailMenuScreen(navController: NavHostController, menuId: Int) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 
-                Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.height(32.dp))
                 
-                Row(modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     Button(
                         onClick = { navController.navigate("edit_menu/${item.id}") },
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(12.dp)
                     ) {
                         Icon(Icons.Default.Edit, contentDescription = null)
                         Spacer(Modifier.width(8.dp))
@@ -769,7 +790,8 @@ fun DetailMenuScreen(navController: NavHostController, menuId: Int) {
                     }
                     OutlinedButton(
                         onClick = { navController.popBackStack() },
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(12.dp)
                     ) {
                         Text("Kembali")
                     }

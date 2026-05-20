@@ -4,45 +4,58 @@ Aplikasi katalog menu restoran modern yang dibangun menggunakan **Jetpack Compos
 
 ## Fitur Utama
 
-- **Home Screen Interaktif**: Dilengkapi dengan banner promo yang bisa diubah-ubah dan kategori menu cepat.
+- **Home Screen Interaktif**: Dilengkapi dengan banner promo yang bisa diubah-ubah, logo restoran, dan kategori menu cepat.
 - **Katalog Menu Lengkap**: Daftar menu yang terbagi berdasarkan kategori (Makanan, Minuman, Camilan) dengan pencarian kategori yang mudah.
 - **Manajemen Stok**: Admin dapat melihat dan memperbarui jumlah stok setiap menu secara real-time.
 - **Profil Kustom**: Ubah nama restoran, alamat, jam buka, dan upload logo restoran Anda sendiri.
-- **Promo Banner Dinamis**: Kelola penawaran spesial langsung dari dalam aplikasi.
+- **Promo Banner Dinamis**: Kelola penawaran spesial langsung dari dalam aplikasi (Admin dapat menambah/hapus promo).
 - **Multi-Image Slideshow**: Unggah beberapa foto untuk setiap menu guna memberikan tampilan yang lebih menggugah selera.
 - **Mode Gelap/Terang**: Dukungan tema gelap yang nyaman di mata dengan palet warna Tosca yang disesuaikan.
 
 ## Screenshot Aplikasi
 
-| Home Screen | Daftar Menu | Detail Menu |
-|:---:|:---:|:---:|
-| ![Home](https://raw.githubusercontent.com/username/repo/main/screenshots/home.png) | ![Menu](https://raw.githubusercontent.com/username/repo/main/screenshots/menu.png) | ![Detail](https://raw.githubusercontent.com/username/repo/main/screenshots/detail.png) |
-| *Halaman penyambutan dengan logo, promo, dan kategori.* | *Daftar menu lengkap per kategori dengan indikator stok.* | *Tampilan detail menu dengan slideshow foto dan rating.* |
+### Halaman Utama & Katalog
+| Home Screen | Daftar Menu (Semua) |
+|:---:|:---:|
+| ![Home](screenshots/home.jpg) | ![Menu](screenshots/menu.jpg) |
+| *Halaman penyambutan dengan logo, promo, dan kategori.* | *Daftar menu lengkap dengan indikator stok.* |
 
-| Profil Restoran | Edit Menu | Edit Profil |
+### Filter Kategori
+| Makanan | Minuman | Camilan |
 |:---:|:---:|:---:|
-| ![Profil](https://raw.githubusercontent.com/username/repo/main/screenshots/profile.png) | ![Edit Menu](https://raw.githubusercontent.com/username/repo/main/screenshots/edit_menu.png) | ![Edit Profil](https://raw.githubusercontent.com/username/repo/main/screenshots/edit_profile.png) |
-| *Informasi lengkap restoran dan pengaturan tema.* | *Formulir lengkap untuk mengubah data menu, harga, stok, dan foto.* | *Pusat kendali identitas restoran dan pengelolaan banner promo.* |
+| ![Makanan](screenshots/kategori_makanan.jpg) | ![Minuman](screenshots/kategori_minuman.jpg) | ![Cemilan](screenshots/kategori_cemilan.jpg) |
+| *Menu khusus kategori Makanan.* | *Menu khusus kategori Minuman.* | *Menu khusus kategori Camilan.* |
+
+### Detail & Pengaturan
+| Detail Menu | Edit Menu | Edit Profil |
+|:---:|:---:|:---:|
+| ![Detail](screenshots/detail.jpg) | ![Edit Menu](screenshots/edit_menu.jpg) | ![Edit Profil](screenshots/edit_profile.jpg) |
+| *Tampilan detail menu (Slideshow).* | *Formulir edit data menu & stok.* | *Pusat kendali restoran & promo.* |
+
+| Profil Restoran |
+|:---:|
+| ![Profil](screenshots/profile.jpg) |
+| *Informasi lengkap & toggle tema.* |
 
 ## Penjelasan Teknis
 
 ### 1. Arsitektur & Teknologi
 - **Bahasa**: Kotlin
 - **UI Framework**: Jetpack Compose (Material 3)
-- **Image Loading**: Coil untuk pemrosesan gambar URI lokal yang efisien.
-- **Navigation**: Jetpack Navigation untuk transisi layar yang mulus.
-- **Storage**: SharedPreferences (dengan format JSON) untuk menyimpan data profil dan banner secara permanen.
+- **Image Loading**: Coil untuk pemrosesan gambar lokal dan galeri.
+- **Navigation**: Jetpack Navigation untuk transisi antar layar.
+- **Storage**: SharedPreferences (dengan format JSON) untuk data profil, promo, dan preferensi tema.
 
 ### 2. UI/UX Modern
-- **Theme-Aware**: Seluruh komponen menggunakan warna semantik yang mengikuti mode terang/gelap.
-- **Responsive Layout**: Menggunakan `LazyColumn` dan `HorizontalPager` untuk performa daftar yang lancar.
-- **Visual Feedback**: Label stok berubah warna (Merah jika habis) untuk memberikan sinyal cepat bagi pengelola.
+- **Theme-Aware**: Warna semantik yang otomatis menyesuaikan mode terang/gelap.
+- **Full Width Image**: Tampilan detail menu menggunakan rasio lebar untuk kesan premium.
+- **Interactive Forms**: Validasi input sederhana dan layout terstruktur untuk admin.
 
 ## Cara Instalasi
 1. Clone repository ini.
 2. Buka di **Android Studio Iguana** atau versi yang lebih baru.
 3. Hubungkan perangkat Android atau gunakan Emulator (Min SDK 24).
-4. Klik **Run** atau ketik `./gradlew installDebug` di terminal.
+4. Jalankan aplikasi melalui tombol **Run**.
 
 ---
 *Dibuat untuk tugas Pemrograman Mobile (UTS) - Menu Restoran UTS*
