@@ -1,4 +1,4 @@
-# Restoran Vibe - Katalog & Manajemen Menu Digital
+# Restoran Menu - Katalog & Manajemen Menu Digital
 
 Aplikasi katalog menu restoran modern yang dibangun menggunakan **Jetpack Compose**. Aplikasi ini dirancang untuk memudahkan pengelola restoran dalam memamerkan menu mereka dan mengelola data ketersediaan stok secara digital.
 
